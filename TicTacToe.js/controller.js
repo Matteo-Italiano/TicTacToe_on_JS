@@ -328,9 +328,9 @@ function changeField(Button, waitingforplay) {
             computer()
         }
 
-        
-        getLastTurn();
         tie()
+        getLastTurn();
+        
     }
 }
 function tie() {
