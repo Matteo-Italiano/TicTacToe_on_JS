@@ -324,13 +324,11 @@ function changeField(Button, waitingforplay) {
             currentTurn = "X";
         }
 
-        console.log("Hatt geklappt");
-
         if (SpieleGegenPC && awaitingPlay) {
-            console.log("inside if")
             computer()
         }
 
+        
         getLastTurn();
         tie()
     }

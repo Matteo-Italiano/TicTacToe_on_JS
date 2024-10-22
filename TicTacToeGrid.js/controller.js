@@ -1,9 +1,3 @@
-function backtostart() {
-    restart()
-}
-
-
-
 let currentTurn = "X";
 let LastTurn = "O";
 let usedButtons = [];
@@ -352,34 +346,6 @@ function tie() {
 function changeFieldAndCheckWinner(Button) {
     changeField(Button, true);
 }
-
-
-function defaults() {
-    restart()
-
-    ChooseModeLabel.style.display = "";
-    MitFreundBtn.style.display = "";
-    OderLabel.style.display = ""
-    ComputerBtn.style.display = "";
-
-
-    ChangeGameModeBtn.style.display = "none";
-    ButtonOwner.style.display = "none";
-    Button1.style.display = "none";
-    Button2.style.display = "none";
-    Button3.style.display = "none";
-    Button4.style.display = "none";
-    Button5.style.display = "none";
-    Button6.style.display = "none";
-    Button7.style.display = "none";
-    Button8.style.display = "none";
-    Button9.style.display = "none";
-
-    WinnerLabel.style.display = "none";
-    restartButton.style.display = "none";
-}
-defaults()
-
 function comp() {
 
     MitFreundBtn.style.display = "none";
@@ -390,7 +356,6 @@ function comp() {
 
 
     ButtonOwner.style.display = "";
-    ChangeGameModeBtn.style.display = "";
     Button1.style.display = "";
     Button2.style.display = "";
     Button3.style.display = "";
@@ -401,6 +366,7 @@ function comp() {
     Button8.style.display = "";
     Button9.style.display = "";
 
+    ChangeGameModeBtn.style.display = "";
     WinnerLabel.style.display = "";
     restartButton.style.display = "";
 
@@ -431,3 +397,29 @@ function normal() {
 
     SpieleGegenFreund = true
 }
+
+function defaults() {
+    restart()
+
+    ChooseModeLabel.style.display = "";
+    MitFreundBtn.style.display = "";
+    OderLabel.style.display = ""
+    ComputerBtn.style.display = "";
+
+
+    ChangeGameModeBtn.style.display = "none";
+    ButtonOwner.style.display = "none";
+    Button1.style.display = "none";
+    Button2.style.display = "none";
+    Button3.style.display = "none";
+    Button4.style.display = "none";
+    Button5.style.display = "none";
+    Button6.style.display = "none";
+    Button7.style.display = "none";
+    Button8.style.display = "none";
+    Button9.style.display = "none";
+
+    WinnerLabel.style.display = "none";
+    restartButton.style.display = "none";
+}
+defaults()
