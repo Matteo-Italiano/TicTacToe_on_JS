@@ -1,4 +1,4 @@
-function backtostart(){
+function backtostart() {
     restart()
 }
 
@@ -66,7 +66,7 @@ function restart() {
 
     let SpieleGegenFreund = undefined
 
-    let SpieleGegenPC = undefined  
+    let SpieleGegenPC = undefined
 }
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
@@ -292,23 +292,23 @@ function computer() {
         let randomChoice = Math.floor(Math.random() * 9 + 1)
 
 
-        if (usedButtons.length < 9){
-            while (usedButtons.includes("Btn" +  `${randomChoice}`)) {
+        if (usedButtons.length < 9) {
+            while (usedButtons.includes("Btn" + `${randomChoice}`)) {
 
                 randomChoice = Math.floor(Math.random() * 9 + 1)
             }
-    
+
             changeField("Btn" + `${randomChoice}`, false);
 
         } else {
             setTimeout(function () {
                 alert("Unentschidenen");
             }, 100);
-    
+
             setTimeout(restart, 2000);
             return true;
         }
-        
+
 
     }
 }
@@ -328,13 +328,15 @@ function changeField(Button, waitingforplay) {
             currentTurn = "X";
         }
 
+        console.log(SpieleGegenPC, awaitingPlay)
+
         if (SpieleGegenPC && awaitingPlay) {
             computer()
         }
 
         tie()
         getLastTurn();
-        
+
     }
 }
 function tie() {
@@ -358,8 +360,11 @@ function changeFieldAndCheckWinner(Button) {
 }
 
 
-function defaults(){
-restart()
+function defaults() {
+    restart()
+
+    SpieleGegenFreund = false
+    SpieleGegenPC = false
 
 
 
@@ -368,26 +373,26 @@ restart()
     ComputerBtn.style.display = "";
     ChooseMode.style.display = "";
 
-ChangeGameMode.style.display = "none";
-Button1.style.display = "none";
-Button2.style.display = "none";
-Button3.style.display = "none";
-Button4.style.display = "none";
-Button5.style.display = "none";
-Button6.style.display = "none";
-Button7.style.display = "none";
-Button8.style.display = "none";
-Button9.style.display = "none";
+    ChangeGameMode.style.display = "none";
+    Button1.style.display = "none";
+    Button2.style.display = "none";
+    Button3.style.display = "none";
+    Button4.style.display = "none";
+    Button5.style.display = "none";
+    Button6.style.display = "none";
+    Button7.style.display = "none";
+    Button8.style.display = "none";
+    Button9.style.display = "none";
 
-Label.style.display = "none";
+    Label.style.display = "none";
 
-restartButton.style.display = "none";
+    restartButton.style.display = "none";
 }
 
 defaults()
 
 function comp() {
-    
+
     MitFreundBtn.style.display = "none";
     TempLabel.style.display = "none"
     ComputerBtn.style.display = "none";

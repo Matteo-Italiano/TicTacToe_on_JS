@@ -5,7 +5,7 @@ let usedButtons = [];
 let MitFreundBtn = document.getElementById('MitFreundBtn')
 let ComputerBtn = document.getElementById('MitComputerBtn')
 let ChooseModeLabel = document.getElementById('ChooseModeLabel')
-let Welcome = document.getElementById('WelcomeLabel')
+let WelcomeLabel = document.getElementById('WelcomeLabel')
 
 ButtonOwner = document.getElementById('BtnOwner')
 
@@ -59,9 +59,6 @@ function restart() {
     currentTurn = "X";
     document.getElementById('WinnerLabel').innerText = "Niemand hat gewonnen";
 
-    let SpieleGegenFreund = undefined
-
-    let SpieleGegenPC = undefined    
 }
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
@@ -81,81 +78,47 @@ function checkWinner(player) {
     if (`${Btn1Value}${Btn2Value}${Btn3Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn4Value}${Btn5Value}${Btn6Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn7Value}${Btn8Value}${Btn9Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn1Value}${Btn4Value}${Btn7Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn2Value}${Btn5Value}${Btn8Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn3Value}${Btn6Value}${Btn9Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn1Value}${Btn5Value}${Btn9Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn3Value}${Btn5Value}${Btn7Value}` == playerValidationString) {
         WinnerLabel.innerText = player + " HAT GEWONNEN!";
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     }
+}
 
+function setTime(player){
+    setTimeout(function () {
+        alert(player + " hat gewonnen!");
+    }, 100);
+    
+    setTimeout(restart, 2000);
+    return true;
 }
 function computer() {
-    let fields = ['Btn1', 'Btn2', 'Btn3', 'Btn4', 'Btn5', 'Btn6', 'Btn7', 'Btn8', 'Btn9',]
-
     let Btn1Value = document.getElementById('Btn1').innerText;
     let Btn2Value = document.getElementById('Btn2').innerText;
     let Btn3Value = document.getElementById('Btn3').innerText;
@@ -166,10 +129,8 @@ function computer() {
     let Btn8Value = document.getElementById('Btn8').innerText;
     let Btn9Value = document.getElementById('Btn9').innerText;
 
-
     almost_winning_constelation = `${player_2}${player_2}`
     almost_loosing_constelation = `${player_1}${player_1}`
-
 
     // The code below is used for Winning when there's the Opportunity Horizontal
     if (`${Btn1Value}${Btn2Value}` === almost_winning_constelation && !usedButtons.includes('Btn3')) {
@@ -352,78 +313,52 @@ function changeFieldAndCheckWinner(Button) {
 }
 function comp() {
 
-    MitFreundBtn.style.display = "none";
-    OderLabel.style.display = "none"
-    ComputerBtn.style.display = "none";
-    WelcomeLabel.style.display = "none";
-    ChooseModeLabel.style.display = "none";
-
-
-    ButtonOwner.style.display = "";
-    Button1.style.display = "";
-    Button2.style.display = "";
-    Button3.style.display = "";
-    Button4.style.display = "";
-    Button5.style.display = "";
-    Button6.style.display = "";
-    Button7.style.display = "";
-    Button8.style.display = "";
-    Button9.style.display = "";
-
-    ChangeGameModeBtn.style.display = "";
-    WinnerLabel.style.display = "";
-    restartButton.style.display = "";
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("")
 
     SpieleGegenPC = true
 }
 function normal() {
 
-    MitFreundBtn.style.display = "none";
-    OderLabel.style.display = "none"
-    ComputerBtn.style.display = "none";
-    WelcomeLabel.style.display = "none";
-    ChooseModeLabel.style.display = "none";
-
-    ButtonOwner.style.display = "";
-    ChangeGameModeBtn.style.display = "";
-    Button1.style.display = "";
-    Button2.style.display = "";
-    Button3.style.display = "";
-    Button4.style.display = "";
-    Button5.style.display = "";
-    Button6.style.display = "";
-    Button7.style.display = "";
-    Button8.style.display = "";
-    Button9.style.display = "";
-
-    WinnerLabel.style.display = "";
-    restartButton.style.display = "";
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("")
 
     SpieleGegenFreund = true
 }
 
 function defaults() {
     restart()
+    
+    SpieleGegenFreund = false
+    SpieleGegenPC = false
 
-    ChooseModeLabel.style.display = "";
-    MitFreundBtn.style.display = "";
-    OderLabel.style.display = ""
-    ComputerBtn.style.display = "";
-
-
-    ChangeGameModeBtn.style.display = "none";
-    ButtonOwner.style.display = "none";
-    Button1.style.display = "none";
-    Button2.style.display = "none";
-    Button3.style.display = "none";
-    Button4.style.display = "none";
-    Button5.style.display = "none";
-    Button6.style.display = "none";
-    Button7.style.display = "none";
-    Button8.style.display = "none";
-    Button9.style.display = "none";
-
-    WinnerLabel.style.display = "none";
-    restartButton.style.display = "none";
+    ChangeSelectorAttribute("")
+    ChangeGameAttribute("none")
 }
 defaults()
+
+function ChangeGameAttribute(Attribute){
+    Button1.style.display = `${Attribute}`;
+    Button2.style.display = `${Attribute}`;
+    Button3.style.display = `${Attribute}`;
+    Button4.style.display = `${Attribute}`;
+    Button5.style.display = `${Attribute}`;
+    Button6.style.display = `${Attribute}`;
+    Button7.style.display = `${Attribute}`;
+    Button8.style.display = `${Attribute}`;
+    Button9.style.display = `${Attribute}`;
+
+    ChangeGameModeBtn.style.display = `${Attribute}`;
+    ButtonOwner.style.display = `${Attribute}`;
+
+    WinnerLabel.style.display = `${Attribute}`;
+    restartButton.style.display = `${Attribute}`;
+}
+
+function ChangeSelectorAttribute(Attribute){
+    ChooseModeLabel.style.display = `${Attribute}`;
+    MitFreundBtn.style.display = `${Attribute}`;
+    OderLabel.style.display = `${Attribute}`;
+    ComputerBtn.style.display = `${Attribute}`;
+    WelcomeLabel.style.display =  `${Attribute}`;
+}
