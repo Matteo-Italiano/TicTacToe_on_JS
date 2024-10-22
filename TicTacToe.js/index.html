@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="controller.js" defer></script>
+    <title>TicTacToe</title>
+</head>
+<p id="Welcome">Willkomen zu Matteo's TicTacToe!</p>
+
+<p id="ChooseMode">Wähle ein Spiel-Modus</p>    
+<body>
+    <ul>
+        <button id="Btn1" onclick="changeFieldAndCheckWinner('Btn1')">1</button></li>
+        <button id="Btn2" onclick="changeFieldAndCheckWinner('Btn2')">2</button></li>
+        <button id="Btn3" onclick="changeFieldAndCheckWinner('Btn3')">3</button></li>
+    </ul>
+
+    <button id="MitFreund" onclick="normal()">Vs. einem Freund</button>
+
+    <ul><p id="Oder">Oder</p></ul>
+    <button id="MitComputer" onclick="comp()">Vs. den Computer</button>
+
+    <ul>
+        <button id="Btn4" onclick="changeFieldAndCheckWinner('Btn4')">4</button>
+        <button id="Btn5" onclick="changeFieldAndCheckWinner('Btn5')">5</button>
+        <button id="Btn6" onclick="changeFieldAndCheckWinner('Btn6')">6</button>
+    </ul>
+    <ul>
+        <button id="Btn7" onclick="changeFieldAndCheckWinner('Btn7')">7</button>
+        <button id="Btn8" onclick="changeFieldAndCheckWinner('Btn8')">8</button>
+        <button id="Btn9" onclick="changeFieldAndCheckWinner('Btn9')">9</button>
+    </ul>
+
+    <p id="WinnerLabel">Niemand hat gewonnen</p>
+
+    <button id="restartButton" onclick="restart()">Restart Game</button>
+    <button id="ChangeGameMode" onclick="defaults()">Ändere Modus</button>
+</body>
+</html>
