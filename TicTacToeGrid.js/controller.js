@@ -58,6 +58,10 @@ function restart() {
     usedButtons = [];
     currentTurn = "X";
     document.getElementById('WinnerLabel').innerText = "Niemand hat gewonnen";
+
+    let SpieleGegenFreund = undefined
+
+    let SpieleGegenPC = undefined    
 }
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
