@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="controller.js" defer></script>
+    <link rel="stylesheet" href="styless.css">
+    <title>TicTacToeGrid</title>
+</head>
+<p id="WelcomeLabel">Willkomen zu Matteo's TicTacToe!</p>
+
+<p id="ChooseModeLabel">Wähle ein Spiel-Modus</p>    
+<body>
+    
+
+    <div id="BtnOwner" class="parent" style="display: none;">
+        <div id="Btn1" onclick="changeFieldAndCheckWinner('Btn1')"></div>
+        <div id="Btn2" onclick="changeFieldAndCheckWinner('Btn2')"></div>
+        <div id="Btn3" onclick="changeFieldAndCheckWinner('Btn3')"></div>
+        <div id="Btn4" onclick="changeFieldAndCheckWinner('Btn4')"></div>
+        <div id="Btn5" onclick="changeFieldAndCheckWinner('Btn5')"></div>
+        <div id="Btn6" onclick="changeFieldAndCheckWinner('Btn6')"></div>
+        <div id="Btn7" onclick="changeFieldAndCheckWinner('Btn7')"></div>
+        <div id="Btn8" onclick="changeFieldAndCheckWinner('Btn8')"></div>
+        <div id="Btn9" onclick="changeFieldAndCheckWinner('Btn9')"></div>
+    </div>
+
+
+    <button id="MitFreundBtn" onclick="normal()">Vs. einem Freund</button>
+
+    <ul><p id="Oder">Oder</p></ul>
+    <button id="MitComputerBtn" onclick="comp()">Vs. den Computer</button>
+
+
+    <p id="WinnerLabel" style="display: none;">Niemand hat gewonnen</p>
+
+    <button id="restartButton" onclick="restart()" style="display: none;">Restart Game</button>
+    <button id="ChangeGameModeBtn" onclick="defaults()" style=" display: none;">Ändere Modus</button> 
+
+</body>
+</html>
