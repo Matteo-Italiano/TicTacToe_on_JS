@@ -10,9 +10,10 @@ let usedButtons = [];
 
 let MitFreundBtn = document.getElementById('MitFreund')
 let ComputerBtn = document.getElementById('MitComputer')
-let ChooseMode = document.getElementById('ChooseMode')
-let Welcome = document.getElementById('Welcome')
+let ChooseModeLabel = document.getElementById('ChooseMode')
+let WelcomeLabel = document.getElementById('Welcome')
 
+let ButtonOwner = document.getElementById('BtnOnr')
 let Button1 = document.getElementById('Btn1')
 let Button2 = document.getElementById('Btn2')
 let Button3 = document.getElementById('Btn3')
@@ -24,23 +25,19 @@ let Button8 = document.getElementById('Btn8')
 let Button9 = document.getElementById('Btn9')
 
 let restartButton = document.getElementById('restartButton')
-let ChangeGameMode = document.getElementById('ChangeGameMode')
+let ChangeGameModeBtn = document.getElementById('ChangeGameMode')
 
-let Label = document.getElementById('WinnerLabel')
+let WinnerLabel = document.getElementById('WinnerLabel')
 
-let TempLabel = document.getElementById('Oder')
+let OderLabel = document.getElementById('Oder')
 
-let SpieleGegenFreund;
-
-let SpieleGegenPC;
-
+let gameAttributes = {
+    SpieleGegenPC: false
+};
 
 player_1 = "X"
 
 player_2 = "O"
-
-
-
 
 function getLastTurn() {
     if (currentTurn == "X") {
@@ -63,10 +60,6 @@ function restart() {
     usedButtons = [];
     currentTurn = "X";
     document.getElementById('WinnerLabel').innerText = "Niemand hat gewonnen";
-
-    let SpieleGegenFreund = undefined
-
-    let SpieleGegenPC = undefined
 }
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
@@ -328,15 +321,12 @@ function changeField(Button, waitingforplay) {
             currentTurn = "X";
         }
 
-        console.log(SpieleGegenPC, awaitingPlay)
-
-        if (SpieleGegenPC && awaitingPlay) {
+        if (gameAttributes.SpieleGegenPC && awaitingPlay) {
             computer()
         }
 
         tie()
         getLastTurn();
-
     }
 }
 function tie() {
@@ -352,102 +342,50 @@ function tie() {
         setTimeout(restart, 2000);
         return true;
     }
-
 }
 function changeFieldAndCheckWinner(Button) {
     changeField(Button, true);
     checkWinner(LastTurn);
 }
-
-
 function defaults() {
     restart()
 
-    SpieleGegenFreund = false
-    SpieleGegenPC = false
-
-
-
-    MitFreundBtn.style.display = "";
-    TempLabel.style.display = ""
-    ComputerBtn.style.display = "";
-    ChooseMode.style.display = "";
-
-    ChangeGameMode.style.display = "none";
-    Button1.style.display = "none";
-    Button2.style.display = "none";
-    Button3.style.display = "none";
-    Button4.style.display = "none";
-    Button5.style.display = "none";
-    Button6.style.display = "none";
-    Button7.style.display = "none";
-    Button8.style.display = "none";
-    Button9.style.display = "none";
-
-    Label.style.display = "none";
-
-    restartButton.style.display = "none";
+    ChangeSelectorAttribute("")
+    ChangeGameAttribute("none", "PC", false)
 }
-
 defaults()
 
 function comp() {
-
-    MitFreundBtn.style.display = "none";
-    TempLabel.style.display = "none"
-    ComputerBtn.style.display = "none";
-    Welcome.style.display = "none";
-    ChooseMode.style.display = "none";
-
-
-    // 
-    ChangeGameMode.style.display = "";
-    Button1.style.display = "";
-    Button2.style.display = "";
-    Button3.style.display = "";
-    Button4.style.display = "";
-    Button5.style.display = "";
-    Button6.style.display = "";
-    Button7.style.display = "";
-    Button8.style.display = "";
-    Button9.style.display = "";
-
-    Label.style.display = "";
-
-    restartButton.style.display = "";
-
-    // Real Code Below
-
-    SpieleGegenPC = true
-
-
-
-
-
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("", "PC", true)
 }
-
 function normal() {
-    MitFreundBtn.style.display = "none";
-    TempLabel.style.display = "none"
-    ComputerBtn.style.display = "none";
-    Welcome.style.display = "none";
-    ChooseMode.style.display = "none";
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("")
+}
+function ChangeGameAttribute(Attribute, Mode, Boole,){
+    Button1.style.display = `${Attribute}`;
+    Button2.style.display = `${Attribute}`;
+    Button3.style.display = `${Attribute}`;
+    Button4.style.display = `${Attribute}`;
+    Button5.style.display = `${Attribute}`;
+    Button6.style.display = `${Attribute}`;
+    Button7.style.display = `${Attribute}`;
+    Button8.style.display = `${Attribute}`;
+    Button9.style.display = `${Attribute}`;
 
-    //
-    ChangeGameMode.style.display = "";
-    Button1.style.display = "";
-    Button2.style.display = "";
-    Button3.style.display = "";
-    Button4.style.display = "";
-    Button5.style.display = "";
-    Button6.style.display = "";
-    Button7.style.display = "";
-    Button8.style.display = "";
-    Button9.style.display = "";
+    ChangeGameModeBtn.style.display = `${Attribute}`;
+    ButtonOwner.style.display = `${Attribute}`;
 
-    Label.style.display = "";
+    WinnerLabel.style.display = `${Attribute}`;
+    restartButton.style.display = `${Attribute}`;
 
-    restartButton.style.display = "";
-
-    SpieleGegenFreund = true
+    gameAttributes[`SpieleGegen${Mode}`] = Boole
+}
+function ChangeSelectorAttribute(Attribute){
+    ChooseModeLabel.style.display = `${Attribute}`;
+    MitFreundBtn.style.display = `${Attribute}`;
+    OderLabel.style.display = `${Attribute}`;
+    ComputerBtn.style.display = `${Attribute}`;
+    WelcomeLabel.style.display =  `${Attribute}`;
 }
