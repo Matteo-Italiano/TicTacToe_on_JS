@@ -1,19 +1,14 @@
-function backtostart() {
-    restart()
-}
-
-
-
 let currentTurn = "X";
 let LastTurn = "O";
 let usedButtons = [];
 
-let MitFreundBtn = document.getElementById('MitFreund')
-let ComputerBtn = document.getElementById('MitComputer')
-let ChooseModeLabel = document.getElementById('ChooseMode')
-let WelcomeLabel = document.getElementById('Welcome')
+let MitFreundBtn = document.getElementById('MitFreundBtn')
+let ComputerBtn = document.getElementById('MitComputerBtn')
+let ChooseModeLabel = document.getElementById('ChooseModeLabel')
+let WelcomeLabel = document.getElementById('WelcomeLabel')
 
-let ButtonOwner = document.getElementById('BtnOnr')
+ButtonOwner = document.getElementById('BtnOwner')
+
 let Button1 = document.getElementById('Btn1')
 let Button2 = document.getElementById('Btn2')
 let Button3 = document.getElementById('Btn3')
@@ -25,7 +20,7 @@ let Button8 = document.getElementById('Btn8')
 let Button9 = document.getElementById('Btn9')
 
 let restartButton = document.getElementById('restartButton')
-let ChangeGameModeBtn = document.getElementById('ChangeGameMode')
+let ChangeGameModeBtn = document.getElementById('ChangeGameModeBtn')
 
 let WinnerLabel = document.getElementById('WinnerLabel')
 
@@ -35,32 +30,66 @@ let gameAttributes = {
     SpieleGegenPC: false
 };
 
-player_1 = "X"
+let Buttons = {
+    Button1: document.getElementById('Btn1'),
+    Button2: document.getElementById('Btn2'),
+    Button3: document.getElementById('Btn3'),
+    Button4: document.getElementById('Btn4'),
+    Button5: document.getElementById('Btn5'),
+    Button6: document.getElementById('Btn6'),
+    Button7: document.getElementById('Btn7'),
+    Button8: document.getElementById('Btn8'),
+    Button9: document.getElementById('Btn9'),
+}
 
+let colorSetter;
+
+
+player_1 = "X"
 player_2 = "O"
 
-function getLastTurn() {
+
+function setLastTurn() {
     if (currentTurn == "X") {
         LastTurn = "O";
     } else {
         LastTurn = "X";
     }
+    checkWinner(LastTurn)
+}
+function defaultColor() {
+    for (let count = 1; count <= 9; count++) {
+        colorSetter = Buttons[`Button${count}`];
+
+        if (colorSetter){
+            colorSetter.style.background = "antiquewhite";
+        } else {
+            console.warn(`Button${count} not found`)
+        }
+        
+    }
 }
 function restart() {
-    document.getElementById('Btn1').innerText = 1;
-    document.getElementById('Btn2').innerText = 2;
-    document.getElementById('Btn3').innerText = 3;
-    document.getElementById('Btn4').innerText = 4;
-    document.getElementById('Btn5').innerText = 5;
-    document.getElementById('Btn6').innerText = 6;
-    document.getElementById('Btn7').innerText = 7;
-    document.getElementById('Btn8').innerText = 8;
-    document.getElementById('Btn9').innerText = 9;
+    document.getElementById('Btn1').innerText = "";
+    document.getElementById('Btn2').innerText = "";
+    document.getElementById('Btn3').innerText = "";
+    document.getElementById('Btn4').innerText = "";
+    document.getElementById('Btn5').innerText = "";
+    document.getElementById('Btn6').innerText = "";
+    document.getElementById('Btn7').innerText = "";
+    document.getElementById('Btn8').innerText = "";
+    document.getElementById('Btn9').innerText = "";
+
+    defaultColor()
+
 
     usedButtons = [];
     currentTurn = "X";
     document.getElementById('WinnerLabel').innerText = "Niemand hat gewonnen";
+
 }
+
+
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
 
@@ -77,83 +106,49 @@ function checkWinner(player) {
     let WinnerLabel = document.getElementById('WinnerLabel');
 
     if (`${Btn1Value}${Btn2Value}${Btn3Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("1", "2", "3", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn4Value}${Btn5Value}${Btn6Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("4", "5", "6", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn7Value}${Btn8Value}${Btn9Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("7", "8", "9", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn1Value}${Btn4Value}${Btn7Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
-
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        colorChanger("1", "4", "7", player)
+        
+        setTime(player)
     } else if (`${Btn2Value}${Btn5Value}${Btn8Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("2", "5", "8", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn3Value}${Btn6Value}${Btn9Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("3", "6", "9", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn1Value}${Btn5Value}${Btn9Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("1", "5", "9", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     } else if (`${Btn3Value}${Btn5Value}${Btn7Value}` == playerValidationString) {
-        WinnerLabel.innerText = player + " HAT GEWONNEN!";
+        colorChanger("3", "5", "7", player)
 
-        setTimeout(function () {
-            alert(player + " hat gewonnen!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTime(player)
     }
+}
 
+function setTime(player) {
+    setTimeout(function () {
+        alert(player + " hat gewonnen!");
+    }, 100);
+
+    setTimeout(restart, 2000);
+    return true;
 }
 function computer() {
-    let fields = ['Btn1', 'Btn2', 'Btn3', 'Btn4', 'Btn5', 'Btn6', 'Btn7', 'Btn8', 'Btn9',]
-
     let Btn1Value = document.getElementById('Btn1').innerText;
     let Btn2Value = document.getElementById('Btn2').innerText;
     let Btn3Value = document.getElementById('Btn3').innerText;
@@ -164,10 +159,8 @@ function computer() {
     let Btn8Value = document.getElementById('Btn8').innerText;
     let Btn9Value = document.getElementById('Btn9').innerText;
 
-
     almost_winning_constelation = `${player_2}${player_2}`
     almost_loosing_constelation = `${player_1}${player_1}`
-
 
     // The code below is used for Winning when there's the Opportunity Horizontal
     if (`${Btn1Value}${Btn2Value}` === almost_winning_constelation && !usedButtons.includes('Btn3')) {
@@ -284,7 +277,6 @@ function computer() {
 
         let randomChoice = Math.floor(Math.random() * 9 + 1)
 
-
         if (usedButtons.length < 9) {
             while (usedButtons.includes("Btn" + `${randomChoice}`)) {
 
@@ -326,7 +318,8 @@ function changeField(Button, waitingforplay) {
         }
 
         tie()
-        getLastTurn();
+        setLastTurn();
+
     }
 }
 function tie() {
@@ -345,8 +338,18 @@ function tie() {
 }
 function changeFieldAndCheckWinner(Button) {
     changeField(Button, true);
-    checkWinner(LastTurn);
 }
+function comp() {
+
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("", "PC", true)
+}
+function normal() {
+
+    ChangeSelectorAttribute("none")
+    ChangeGameAttribute("")
+}
+
 function defaults() {
     restart()
 
@@ -355,15 +358,7 @@ function defaults() {
 }
 defaults()
 
-function comp() {
-    ChangeSelectorAttribute("none")
-    ChangeGameAttribute("", "PC", true)
-}
-function normal() {
-    ChangeSelectorAttribute("none")
-    ChangeGameAttribute("")
-}
-function ChangeGameAttribute(Attribute, Mode, Boole,){
+function ChangeGameAttribute(Attribute, Mode, Boole) {
     Button1.style.display = `${Attribute}`;
     Button2.style.display = `${Attribute}`;
     Button3.style.display = `${Attribute}`;
@@ -382,10 +377,31 @@ function ChangeGameAttribute(Attribute, Mode, Boole,){
 
     gameAttributes[`SpieleGegen${Mode}`] = Boole
 }
-function ChangeSelectorAttribute(Attribute){
+
+function colorChanger(First, Second, Third, player) {
+    let playercolor;
+
+    let Premiere = Buttons[`Button${First}`]
+    let Deuxieme = Buttons[`Button${Second}`]
+    let Troisieme = Buttons[`Button${Third}`]
+
+    if (player === "X"){
+        playercolor = "red"
+    } else {
+        playercolor = "green"
+    }
+
+    Premiere.style.background = `${playercolor}`
+    Deuxieme.style.background = `${playercolor}`
+    Troisieme.style.background = `${playercolor}`
+
+    WinnerLabel.innerText = player + " HAT GEWONNEN!";
+}
+
+function ChangeSelectorAttribute(Attribute) {
     ChooseModeLabel.style.display = `${Attribute}`;
     MitFreundBtn.style.display = `${Attribute}`;
     OderLabel.style.display = `${Attribute}`;
     ComputerBtn.style.display = `${Attribute}`;
-    WelcomeLabel.style.display =  `${Attribute}`;
+    WelcomeLabel.style.display = `${Attribute}`;
 }
