@@ -108,39 +108,39 @@ function checkWinner(player) {
     if (`${Btn1Value}${Btn2Value}${Btn3Value}` == playerValidationString) {
         colorChanger("1", "2", "3", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn4Value}${Btn5Value}${Btn6Value}` == playerValidationString) {
         colorChanger("4", "5", "6", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn7Value}${Btn8Value}${Btn9Value}` == playerValidationString) {
         colorChanger("7", "8", "9", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn1Value}${Btn4Value}${Btn7Value}` == playerValidationString) {
         colorChanger("1", "4", "7", player)
         
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn2Value}${Btn5Value}${Btn8Value}` == playerValidationString) {
         colorChanger("2", "5", "8", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn3Value}${Btn6Value}${Btn9Value}` == playerValidationString) {
         colorChanger("3", "6", "9", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn1Value}${Btn5Value}${Btn9Value}` == playerValidationString) {
         colorChanger("1", "5", "9", player)
 
-        setTime(player)
+        setTimeOut(player)
     } else if (`${Btn3Value}${Btn5Value}${Btn7Value}` == playerValidationString) {
         colorChanger("3", "5", "7", player)
 
-        setTime(player)
+        setTimeOut(player)
     }
 }
 
-function setTime(player) {
+function setTimeOut(player) {
     setTimeout(function () {
         alert(player + " hat gewonnen!");
     }, 100);
@@ -148,6 +148,9 @@ function setTime(player) {
     setTimeout(restart, 2000);
     return true;
 }
+function 
+
+
 function computer() {
     let Btn1Value = document.getElementById('Btn1').innerText;
     let Btn2Value = document.getElementById('Btn2').innerText;
@@ -313,6 +316,7 @@ function changeField(Button, waitingforplay) {
             currentTurn = "X";
         }
 
+        setLastTurn();
         if (gameAttributes.SpieleGegenPC && awaitingPlay) {
             computer()
         }
