@@ -10,7 +10,7 @@ let ComputerBtn = document.getElementById('MitComputerBtn')
 let ChooseModeLabel = document.getElementById('ChooseModeLabel')
 let WelcomeLabel = document.getElementById('WelcomeLabel')
 
-ButtonOwner = document.getElementById('BtnOwner')
+let ButtonOwner = document.getElementById('BtnOwner')
 
 let restartButton = document.getElementById('restartButton')
 let ChangeGameModeBtn = document.getElementById('ChangeGameModeBtn')
@@ -20,10 +20,6 @@ let WinnerLabel = document.getElementById('WinnerLabel')
 let OderLabel = document.getElementById('Oder')
 
 let colorSetter;
-
-let gameAttributes = {
-    SpieleGegenPC: false
-};
 
 let Buttons = {
     Button1: document.getElementById('Btn1'),
@@ -37,7 +33,9 @@ let Buttons = {
     Button9: document.getElementById('Btn9'),
 
     almost_winning_constelation: `${player_2}${player_2}`,
-    almost_loosing_constelation: `${player_1}${player_1}`
+    almost_loosing_constelation: `${player_1}${player_1}`,
+
+    SpieleGegenPC: false
 }
 function setLastTurn() {
     if (currentTurn == "X") {
@@ -59,15 +57,10 @@ function defaultColor() {
     }
 }
 function restart() {
-    document.getElementById('Btn1').innerText = "";
-    document.getElementById('Btn2').innerText = "";
-    document.getElementById('Btn3').innerText = "";
-    document.getElementById('Btn4').innerText = "";
-    document.getElementById('Btn5').innerText = "";
-    document.getElementById('Btn6').innerText = "";
-    document.getElementById('Btn7').innerText = "";
-    document.getElementById('Btn8').innerText = "";
-    document.getElementById('Btn9').innerText = "";
+    for (let number = 1; number <= 9; number++){
+    Btn = Buttons[`Button${number}`]
+    Btn.innerText = "";
+    }
     defaultColor()
 
     usedButtons = [];
@@ -107,7 +100,7 @@ function checkWinner(player) {
 
     } else if (`${Buttons.Button3.innerText}${Buttons.Button5.innerText}${Buttons.Button7.innerText}` == playerValidationString) {
         colorChanger("3", "5", "7", player, )
-        setTimeOut(player, "hat gewonnen!")
+        setTimeOut(player, " hat gewonnen!")
     }
 }
 function setTimeOut(player, Text) {
@@ -199,7 +192,7 @@ function changeField(Button, waitingforplay) {
         }
 
         setLastTurn();
-        if (gameAttributes.SpieleGegenPC && awaitingPlay) {
+        if (Buttons.SpieleGegenPC && awaitingPlay) {
             computer()
         }
         tie()
@@ -249,7 +242,7 @@ function ChangeGameAttribute(Attribute, Mode, Boole) {
     WinnerLabel.style.display = `${Attribute}`;
     restartButton.style.display = `${Attribute}`;
 
-    gameAttributes[`SpieleGegen${Mode}`] = Boole
+    Buttons[`SpieleGegen${Mode}`] = Boole
 }
 function colorChanger(First, Second, Third, player) {
     let playercolor;
@@ -266,8 +259,6 @@ function colorChanger(First, Second, Third, player) {
     Premiere.style.background = `${playercolor}`
     Deuxieme.style.background = `${playercolor}`
     Troisieme.style.background = `${playercolor}`
-
-    WinnerLabel.innerText = player + " HAT GEWONNEN!";
 }
 function ChangeSelectorAttribute(Attribute) {
     ChooseModeLabel.style.display = `${Attribute}`;
