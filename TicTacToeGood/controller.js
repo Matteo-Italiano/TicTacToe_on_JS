@@ -2,6 +2,9 @@ let currentTurn = "X";
 let LastTurn = "O";
 let usedButtons = [];
 
+let player_1 = "X"
+let player_2 = "O"
+
 let MitFreundBtn = document.getElementById('MitFreundBtn')
 let ComputerBtn = document.getElementById('MitComputerBtn')
 let ChooseModeLabel = document.getElementById('ChooseModeLabel')
@@ -9,22 +12,14 @@ let WelcomeLabel = document.getElementById('WelcomeLabel')
 
 ButtonOwner = document.getElementById('BtnOwner')
 
-let Button1 = document.getElementById('Btn1')
-let Button2 = document.getElementById('Btn2')
-let Button3 = document.getElementById('Btn3')
-let Button4 = document.getElementById('Btn4')
-let Button5 = document.getElementById('Btn5')
-let Button6 = document.getElementById('Btn6')
-let Button7 = document.getElementById('Btn7')
-let Button8 = document.getElementById('Btn8')
-let Button9 = document.getElementById('Btn9')
-
 let restartButton = document.getElementById('restartButton')
 let ChangeGameModeBtn = document.getElementById('ChangeGameModeBtn')
 
 let WinnerLabel = document.getElementById('WinnerLabel')
 
 let OderLabel = document.getElementById('Oder')
+
+let colorSetter;
 
 let gameAttributes = {
     SpieleGegenPC: false
@@ -40,15 +35,10 @@ let Buttons = {
     Button7: document.getElementById('Btn7'),
     Button8: document.getElementById('Btn8'),
     Button9: document.getElementById('Btn9'),
+
+    almost_winning_constelation: `${player_2}${player_2}`,
+    almost_loosing_constelation: `${player_1}${player_1}`
 }
-
-let colorSetter;
-
-
-player_1 = "X"
-player_2 = "O"
-
-
 function setLastTurn() {
     if (currentTurn == "X") {
         LastTurn = "O";
@@ -61,12 +51,11 @@ function defaultColor() {
     for (let count = 1; count <= 9; count++) {
         colorSetter = Buttons[`Button${count}`];
 
-        if (colorSetter){
+        if (colorSetter) {
             colorSetter.style.background = "antiquewhite";
         } else {
             console.warn(`Button${count} not found`)
         }
-        
     }
 }
 function restart() {
@@ -79,205 +68,107 @@ function restart() {
     document.getElementById('Btn7').innerText = "";
     document.getElementById('Btn8').innerText = "";
     document.getElementById('Btn9').innerText = "";
-
     defaultColor()
-
 
     usedButtons = [];
     currentTurn = "X";
     document.getElementById('WinnerLabel').innerText = "Niemand hat gewonnen";
-
 }
-
-
 function checkWinner(player) {
     let playerValidationString = `${player}${player}${player}`;
 
-    let Btn1Value = document.getElementById('Btn1').innerText;
-    let Btn2Value = document.getElementById('Btn2').innerText;
-    let Btn3Value = document.getElementById('Btn3').innerText;
-    let Btn4Value = document.getElementById('Btn4').innerText;
-    let Btn5Value = document.getElementById('Btn5').innerText;
-    let Btn6Value = document.getElementById('Btn6').innerText;
-    let Btn7Value = document.getElementById('Btn7').innerText;
-    let Btn8Value = document.getElementById('Btn8').innerText;
-    let Btn9Value = document.getElementById('Btn9').innerText;
-
-    let WinnerLabel = document.getElementById('WinnerLabel');
-
-    if (`${Btn1Value}${Btn2Value}${Btn3Value}` == playerValidationString) {
+    if (`${Buttons.Button1.innerText}${Buttons.Button2.innerText}${Buttons.Button3.innerText}` == playerValidationString) {
         colorChanger("1", "2", "3", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn4Value}${Btn5Value}${Btn6Value}` == playerValidationString) {
+    } else if (`${Buttons.Button4.innerText}${Buttons.Button5.innerText}${Buttons.Button6.innerText}` == playerValidationString) {
         colorChanger("4", "5", "6", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn7Value}${Btn8Value}${Btn9Value}` == playerValidationString) {
+    } else if (`${Buttons.Button7.innerText}${Buttons.Button8.innerText}${Buttons.Button9.innerText}` == playerValidationString) {
         colorChanger("7", "8", "9", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn1Value}${Btn4Value}${Btn7Value}` == playerValidationString) {
+    } else if (`${Buttons.Button1.innerText}${Buttons.Button4.innerText}${Buttons.Button7.innerText}` == playerValidationString) {
         colorChanger("1", "4", "7", player)
-        
-        setTimeOut(player)
-    } else if (`${Btn2Value}${Btn5Value}${Btn8Value}` == playerValidationString) {
+        setTimeOut(player, " hat gewonnen!")
+
+    } else if (`${Buttons.Button2.innerText}${Buttons.Button5.innerText}${Buttons.Button8.innerText}` == playerValidationString) {
         colorChanger("2", "5", "8", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn3Value}${Btn6Value}${Btn9Value}` == playerValidationString) {
+    } else if (`${Buttons.Button3.innerText}${Buttons.Button6.innerText}${Buttons.Button9.innerText}` == playerValidationString) {
         colorChanger("3", "6", "9", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn1Value}${Btn5Value}${Btn9Value}` == playerValidationString) {
+    } else if (`${Buttons.Button1.innerText}${Buttons.Button5.innerText}${Buttons.Button9.innerText}` == playerValidationString) {
         colorChanger("1", "5", "9", player)
+        setTimeOut(player, " hat gewonnen!")
 
-        setTimeOut(player)
-    } else if (`${Btn3Value}${Btn5Value}${Btn7Value}` == playerValidationString) {
-        colorChanger("3", "5", "7", player)
-
-        setTimeOut(player)
+    } else if (`${Buttons.Button3.innerText}${Buttons.Button5.innerText}${Buttons.Button7.innerText}` == playerValidationString) {
+        colorChanger("3", "5", "7", player, )
+        setTimeOut(player, "hat gewonnen!")
     }
 }
-
-function setTimeOut(player) {
+function setTimeOut(player, Text) {
     setTimeout(function () {
-        alert(player + " hat gewonnen!");
+        alert(player + Text);
     }, 100);
 
     setTimeout(restart, 2000);
     return true;
 }
-function 
+function InteligentComputer(First, Second, Third, Constelation) {
+    let Premiere = Buttons[`Button${First}`]
+    let Deuxieme = Buttons[`Button${Second}`]
+    let Troisieme = Buttons[`Button${Third}`]
 
+    let almost = Buttons[`almost_${Constelation}_constelation`]
 
-function computer() {
-    let Btn1Value = document.getElementById('Btn1').innerText;
-    let Btn2Value = document.getElementById('Btn2').innerText;
-    let Btn3Value = document.getElementById('Btn3').innerText;
-    let Btn4Value = document.getElementById('Btn4').innerText;
-    let Btn5Value = document.getElementById('Btn5').innerText;
-    let Btn6Value = document.getElementById('Btn6').innerText;
-    let Btn7Value = document.getElementById('Btn7').innerText;
-    let Btn8Value = document.getElementById('Btn8').innerText;
-    let Btn9Value = document.getElementById('Btn9').innerText;
-
-    almost_winning_constelation = `${player_2}${player_2}`
-    almost_loosing_constelation = `${player_1}${player_1}`
-
-    // The code below is used for Winning when there's the Opportunity Horizontal
-    if (`${Btn1Value}${Btn2Value}` === almost_winning_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn2Value}${Btn3Value}` === almost_winning_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn3Value}` === almost_winning_constelation && !usedButtons.includes('Btn2')) {
-        changeField('Btn2');
-    } else if (`${Btn4Value}${Btn5Value}` === almost_winning_constelation && !usedButtons.includes('Btn6')) {
-        changeField('Btn6');
-    } else if (`${Btn5Value}${Btn6Value}` === almost_winning_constelation && !usedButtons.includes('Btn4')) {
-        changeField('Btn4');
-    } else if (`${Btn4Value}${Btn6Value}` === almost_winning_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn7Value}${Btn8Value}` === almost_winning_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn8Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn7Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn8')) {
-        changeField('Btn8');
+    if (`${Premiere.innerText}${Deuxieme.innerText}` === almost && !usedButtons.includes(`Btn${Third}`)) {
+        changeField(`Btn${Third}`)
+        return true
     }
-
-    // The code below is used to win Vertical
-    else if (`${Btn1Value}${Btn4Value}` === almost_winning_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn4Value}${Btn7Value}` === almost_winning_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn7Value}` === almost_winning_constelation && !usedButtons.includes('Btn4')) {
-        changeField('Btn4');
-    } else if (`${Btn2Value}${Btn5Value}` === almost_winning_constelation && !usedButtons.includes('Btn8')) {
-        changeField('Btn8');
-    } else if (`${Btn5Value}${Btn8Value}` === almost_winning_constelation && !usedButtons.includes('Btn2')) {
-        changeField('Btn2');
-    } else if (`${Btn2Value}${Btn8Value}` === almost_winning_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn3Value}${Btn6Value}` === almost_winning_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn6Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn3Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn6')) {
-        changeField('Btn6');
+    else if (`${Premiere.innerText}${Troisieme.innerText}` === almost && !usedButtons.includes(`Btn${Second}`)) {
+        changeField(`Btn${Second}`)
+        return true
     }
-
-    // The code below is used for winning Diagonally
-    else if (`${Btn1Value}${Btn5Value}` === almost_winning_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn5Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn9Value}` === almost_winning_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn3Value}${Btn5Value}` === almost_winning_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn5Value}${Btn7Value}` === almost_winning_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn7Value}${Btn3Value}` === almost_winning_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    }
-
-    // The code below is used for Blocking the Opponent Horizontally
-    else if (`${Btn1Value}${Btn2Value}` === almost_loosing_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn2Value}${Btn3Value}` === almost_loosing_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn3Value}` === almost_loosing_constelation && !usedButtons.includes('Btn2')) {
-        changeField('Btn2');
-    } else if (`${Btn4Value}${Btn5Value}` === almost_loosing_constelation && !usedButtons.includes('Btn6')) {
-        changeField('Btn6');
-    } else if (`${Btn5Value}${Btn6Value}` === almost_loosing_constelation && !usedButtons.includes('Btn4')) {
-        changeField('Btn4');
-    } else if (`${Btn4Value}${Btn6Value}` === almost_loosing_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn7Value}${Btn8Value}` === almost_loosing_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn8Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn7Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn8')) {
-        changeField('Btn8');
-    }
-
-    // The code below is used for Blocking the Opponent Vertically
-    else if (`${Btn1Value}${Btn4Value}` === almost_loosing_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn4Value}${Btn7Value}` === almost_loosing_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn7Value}` === almost_loosing_constelation && !usedButtons.includes('Btn4')) {
-        changeField('Btn4');
-    } else if (`${Btn2Value}${Btn5Value}` === almost_loosing_constelation && !usedButtons.includes('Btn8')) {
-        changeField('Btn8');
-    } else if (`${Btn5Value}${Btn8Value}` === almost_loosing_constelation && !usedButtons.includes('Btn2')) {
-        changeField('Btn2');
-    } else if (`${Btn2Value}${Btn8Value}` === almost_loosing_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn3Value}${Btn6Value}` === almost_loosing_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn6Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn3Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn6')) {
-        changeField('Btn6');
-
-        // The code below is used for Blocking the Opponent Diagonally
-    } else if (`${Btn1Value}${Btn5Value}` === almost_loosing_constelation && !usedButtons.includes('Btn9')) {
-        changeField('Btn9');
-    } else if (`${Btn5Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn1')) {
-        changeField('Btn1');
-    } else if (`${Btn1Value}${Btn9Value}` === almost_loosing_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
-    } else if (`${Btn3Value}${Btn5Value}` === almost_loosing_constelation && !usedButtons.includes('Btn7')) {
-        changeField('Btn7');
-    } else if (`${Btn5Value}${Btn7Value}` === almost_loosing_constelation && !usedButtons.includes('Btn3')) {
-        changeField('Btn3');
-    } else if (`${Btn7Value}${Btn3Value}` === almost_loosing_constelation && !usedButtons.includes('Btn5')) {
-        changeField('Btn5');
+    else if (`${Deuxieme.innerText}${Troisieme.innerText}` === almost && !usedButtons.includes(`Btn${First}`)) {
+        changeField(`Btn${First}`)
+        return true
     } else {
-
+        return false
+    }
+}
+function computer() {
+    function WinOrLoose(Condition) {
+        // The code below is used for when there's the Opportunity Horizontal
+        if (InteligentComputer("1", "2", "3", Condition)) {
+            return true
+        } else if (InteligentComputer("4", "5", "6", Condition)) {
+            return true
+        } else if (InteligentComputer("7", "8", "9", Condition)) {
+            return true
+        }
+        // The code below is used to Vertical
+        else if (InteligentComputer("1", "4", "7", Condition)) {
+            return true
+        } else if (InteligentComputer("2", "5", "8", Condition)) {
+            return true
+        } else if (InteligentComputer("3", "6", "9", Condition)) {
+            return true
+        }
+        // The code below is used for Diagonally
+        else if (InteligentComputer("1", "5", "9", Condition)) {
+            return true
+        } else if (InteligentComputer("7", "5", "3", Condition)) {
+            return true
+        }
+    }  if (WinOrLoose("winning")) {
+        return
+    } else if (WinOrLoose("loosing")) {
+        return
+    } else {
         let randomChoice = Math.floor(Math.random() * 9 + 1)
 
         if (usedButtons.length < 9) {
@@ -285,19 +176,10 @@ function computer() {
 
                 randomChoice = Math.floor(Math.random() * 9 + 1)
             }
-
             changeField("Btn" + `${randomChoice}`, false);
-
         } else {
-            setTimeout(function () {
-                alert("Unentschidenen");
-            }, 100);
-
-            setTimeout(restart, 2000);
-            return true;
+            tie()
         }
-
-
     }
 }
 function changeField(Button, waitingforplay) {
@@ -320,10 +202,7 @@ function changeField(Button, waitingforplay) {
         if (gameAttributes.SpieleGegenPC && awaitingPlay) {
             computer()
         }
-
         tie()
-        setLastTurn();
-
     }
 }
 function tie() {
@@ -331,29 +210,20 @@ function tie() {
         return false
     } else {
         document.getElementById('WinnerLabel').innerText = "Unentschieden!";
-
-        setTimeout(function () {
-            alert("Unentschieden!");
-        }, 100);
-
-        setTimeout(restart, 2000);
-        return true;
+        setTimeOut("Unentschieden!", "")
     }
 }
 function changeFieldAndCheckWinner(Button) {
     changeField(Button, true);
 }
 function comp() {
-
     ChangeSelectorAttribute("none")
     ChangeGameAttribute("", "PC", true)
 }
 function normal() {
-
     ChangeSelectorAttribute("none")
     ChangeGameAttribute("")
 }
-
 function defaults() {
     restart()
 
@@ -363,15 +233,15 @@ function defaults() {
 defaults()
 
 function ChangeGameAttribute(Attribute, Mode, Boole) {
-    Button1.style.display = `${Attribute}`;
-    Button2.style.display = `${Attribute}`;
-    Button3.style.display = `${Attribute}`;
-    Button4.style.display = `${Attribute}`;
-    Button5.style.display = `${Attribute}`;
-    Button6.style.display = `${Attribute}`;
-    Button7.style.display = `${Attribute}`;
-    Button8.style.display = `${Attribute}`;
-    Button9.style.display = `${Attribute}`;
+    Buttons.Button1.style.display = `${Attribute}`;
+    Buttons.Button2.style.display = `${Attribute}`;
+    Buttons.Button3.style.display = `${Attribute}`;
+    Buttons.Button4.style.display = `${Attribute}`;
+    Buttons.Button5.style.display = `${Attribute}`;
+    Buttons.Button6.style.display = `${Attribute}`;
+    Buttons.Button7.style.display = `${Attribute}`;
+    Buttons.Button8.style.display = `${Attribute}`;
+    Buttons.Button9.style.display = `${Attribute}`;
 
     ChangeGameModeBtn.style.display = `${Attribute}`;
     ButtonOwner.style.display = `${Attribute}`;
@@ -381,7 +251,6 @@ function ChangeGameAttribute(Attribute, Mode, Boole) {
 
     gameAttributes[`SpieleGegen${Mode}`] = Boole
 }
-
 function colorChanger(First, Second, Third, player) {
     let playercolor;
 
@@ -389,19 +258,17 @@ function colorChanger(First, Second, Third, player) {
     let Deuxieme = Buttons[`Button${Second}`]
     let Troisieme = Buttons[`Button${Third}`]
 
-    if (player === "X"){
+    if (player === "X") {
         playercolor = "red"
     } else {
         playercolor = "green"
     }
-
     Premiere.style.background = `${playercolor}`
     Deuxieme.style.background = `${playercolor}`
     Troisieme.style.background = `${playercolor}`
 
     WinnerLabel.innerText = player + " HAT GEWONNEN!";
 }
-
 function ChangeSelectorAttribute(Attribute) {
     ChooseModeLabel.style.display = `${Attribute}`;
     MitFreundBtn.style.display = `${Attribute}`;
